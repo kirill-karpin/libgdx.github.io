@@ -819,7 +819,7 @@ private void logic() {
     bucketSprite.setX(MathUtils.clamp(bucketSprite.getX(), 0, worldWidth - bucketWidth));
 
     float delta = Gdx.graphics.getDeltaTime();
-    bucketRectangle.set(bucketSprite.getX(), bucketSprite.getY(), bucketWidth, bucketHeight);
+    bucketRectangle.setRect(bucketSprite.getX(), bucketSprite.getY(), bucketWidth, bucketHeight);
 
     for (int i = dropSprites.size - 1; i >= 0; i--) {
         Sprite dropSprite = dropSprites.get(i);
@@ -827,10 +827,10 @@ private void logic() {
         float dropHeight = dropSprite.getHeight();
 
         dropSprite.translateY(-2f * delta);
-        dropRectangle.set(dropSprite.getX(), dropSprite.getY(), dropWidth, dropHeight);
+        dropRectangle.setRect(dropSprite.getX(), dropSprite.getY(), dropWidth, dropHeight);
         
         if (dropSprite.getY() < -dropHeight) dropSprites.removeIndex(i);
-        else if (bucketRectangle.overlaps(dropRectangle)) {
+        else if (bucketRectangle.intersects(dropRectangle)) {
             dropSprites.removeIndex(i);
             dropSound.play(); // Play the sound
         }
@@ -965,7 +965,7 @@ public class Main implements ApplicationListener {
         bucketSprite.setX(MathUtils.clamp(bucketSprite.getX(), 0, worldWidth - bucketWidth));
 
         float delta = Gdx.graphics.getDeltaTime();
-        bucketRectangle.set(bucketSprite.getX(), bucketSprite.getY(), bucketWidth, bucketHeight);
+        bucketRectangle.setRect(bucketSprite.getX(), bucketSprite.getY(), bucketWidth, bucketHeight);
 
         for (int i = dropSprites.size - 1; i >= 0; i--) {
             Sprite dropSprite = dropSprites.get(i);
@@ -973,10 +973,10 @@ public class Main implements ApplicationListener {
             float dropHeight = dropSprite.getHeight();
 
             dropSprite.translateY(-2f * delta);
-            dropRectangle.set(dropSprite.getX(), dropSprite.getY(), dropWidth, dropHeight);
+            dropRectangle.setRect(dropSprite.getX(), dropSprite.getY(), dropWidth, dropHeight);
 
             if (dropSprite.getY() < -dropHeight) dropSprites.removeIndex(i);
-            else if (bucketRectangle.overlaps(dropRectangle)) {
+            else if (bucketRectangle.intersects(dropRectangle)) {
                 dropSprites.removeIndex(i);
                 dropSound.play();
             }
